@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expressjsdemo
+  labels:
+    app: expressjsdemo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expressjsdemo
+  template:
+    metadata:
+      labels:
+        app: expressjsdemo
+    spec:
+      containers:
+        - name: expressjsdemo
+          image: localhost:32000/expressjsdemo:registry3
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /service/public
+              port: 8080

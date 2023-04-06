@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: expressjsdemo
+spec:
+  rules:
+    - host: expressjsdemo.192.168.64.4.nip.io
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: expressjsdemo
+              port:
+                number: 8080
